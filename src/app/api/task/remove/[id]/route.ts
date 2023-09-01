@@ -1,7 +1,6 @@
 import authVerify from "@/util/authVerify";
 import prisma from "@/util/prisma";
 import { NextResponse } from "next/server";
-import { z } from "zod";
 
 export async function DELETE(
   request: Request,
@@ -13,7 +12,7 @@ export async function DELETE(
       throw { status: 400, message: "Id Is A Number" };
     }
     await authVerify();
-    await prisma.task.delete({
+    await prisma.task_Task.delete({
       where: {
         id: Number(id),
       },

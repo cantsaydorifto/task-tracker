@@ -4,8 +4,7 @@ import Modal from "../Modal/Modal";
 import styles from "./addTask.module.css";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import useAuth from "@/hooks/useAuth";
-import type { Task } from "@prisma/client";
-import axios from "axios";
+import type { Task_Task as Task } from "@prisma/client";
 
 export default function AddTaskModal({
   toggleModal,

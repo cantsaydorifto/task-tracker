@@ -1,7 +1,6 @@
 "use client";
 import styles from "./navbar.module.css";
 import { useState } from "react";
-// import { useLogout } from "@/hooks/useLogout";
 import Modal from "../Modal/Modal";
 import LoginForm from "../authForms/LoginForm";
 import SignupForm from "../authForms/SignupForm";

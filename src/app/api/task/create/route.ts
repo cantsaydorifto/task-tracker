@@ -19,7 +19,7 @@ export async function POST(request: Request) {
       throw { status: 400, message: taskInfo.error.issues[0].message };
 
     const user = await authVerify();
-    const post = await prisma.task.create({
+    const post = await prisma.task_Task.create({
       data: {
         authorId: user.id,
         content: taskInfo.data.content,

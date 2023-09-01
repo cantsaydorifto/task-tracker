@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const user = await authVerify();
-    const tasks = await prisma.task.findMany({
+    const tasks = await prisma.task_Task.findMany({
       where: {
         authorId: user.id,
       },

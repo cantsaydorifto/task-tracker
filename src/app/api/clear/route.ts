@@ -10,7 +10,7 @@ export async function POST() {
 
     const refreshToken = cookie.value;
 
-    const userRefreshToken = await prisma.refreshToken.findUnique({
+    const userRefreshToken = await prisma.task_RefreshToken.findUnique({
       where: {
         token: refreshToken,
       },
@@ -44,7 +44,7 @@ export async function POST() {
     });
     cookies().delete("jwt");
 
-    await prisma.refreshToken.delete({
+    await prisma.task_RefreshToken.delete({
       where: {
         token: refreshToken,
       },

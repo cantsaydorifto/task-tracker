@@ -1,7 +1,7 @@
 "use client";
 
 import AddTaskModal from "@/components/addTask/AddTask";
-import type { Task } from "@prisma/client";
+import type { Task_Task as Task } from "@prisma/client";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
 import styles from "../app/page.module.css";
