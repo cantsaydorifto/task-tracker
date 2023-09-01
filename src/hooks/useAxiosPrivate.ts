@@ -43,6 +43,6 @@ export default function useAxiosPrivate() {
       axiosPrivate.interceptors.request.eject(reqInterceptor);
       axiosPrivate.interceptors.response.eject(resInterceptor);
     };
-  }, [auth, refresh]);
+  }, [auth, refresh, logout]);
   return axiosPrivate;
 }

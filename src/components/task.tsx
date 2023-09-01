@@ -60,7 +60,7 @@ export default function Tasks({ token }: { token: string }) {
       }
     }
     getTasks();
-  }, []);
+  }, [axiosPrivate, token]);
 
   return (
     <>
