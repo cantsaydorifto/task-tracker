@@ -57,14 +57,16 @@ export default function AddTaskModal({
           onClick={async (event) => {
             event.preventDefault();
             toggleModal();
-            const res = await axiosPrivate.post<{ createdPost: Task }>(
-              "/api/task/create",
-              task,
-              {
-                headers: { Authorization: `Bearer: ${ctx.auth.user?.token}` },
-              }
-            );
-            addTask(res.data.createdPost);
+            try {
+              const res = await axiosPrivate.post<{ createdPost: Task }>(
+                "/api/task/create",
+                task,
+                {
+                  headers: { Authorization: `Bearer: ${ctx.auth.user?.token}` },
+                }
+              );
+              addTask(res.data.createdPost);
+            } catch (err) {}
           }}
         >
           Add Task
