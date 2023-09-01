@@ -5,7 +5,7 @@
   width: calc(100% - 40px);
   top: 0;
   left: 20px;
-  left: 20px;
+  /* left: 20px; */
   display: flex;
   position: fixed;
   z-index: 1;
@@ -49,8 +49,26 @@
   color: white;
   padding: 8px 12px;
   border-radius: 25px;
+  animation: pop 0.2s ease-in-out;
 }
 
-.navbar > div:nth-child(2) > img {
-  height: 40px;
+.navbar > div:nth-child(2) > .logOut {
+  background-color: transparent;
+  border: 2px solid #704d8c;
+  color: #a372cb;
+}
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .navbar {
+    padding: 0;
+  }
 }

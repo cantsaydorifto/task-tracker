@@ -8,12 +8,13 @@ export default function Home() {
 
   if (!ctx.auth.user)
     return (
-      <main className={styles.main}>
+      <main key="NOT-LOGGED-IN" className={styles.main}>
         <h1>Not Logged In</h1>
+        <p>Try Logging in To add Tasks</p>
       </main>
     );
   return (
-    <main className={styles.main}>
+    <main key="LOGGED-IN" className={styles.main}>
       <h1>Tasks</h1>
       <Tasks token={ctx.auth.user.token} />
     </main>

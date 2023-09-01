@@ -7,11 +7,13 @@ import LoginForm from "../authForms/LoginForm";
 import SignupForm from "../authForms/SignupForm";
 import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
+import useLogout from "@/hooks/useLogout";
 
 export default function Navbar() {
   const {
     auth: { user },
   } = useAuth();
+  const logout = useLogout();
 
   const toggleModal = () => {
     setShowModal((prev) => !prev);
@@ -33,12 +35,17 @@ export default function Navbar() {
         <div>
           {/* <span>Logged in as {!!user ? user.username : "none"}</span> */}
           {user ? (
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
-              alt={user.username}
-            />
+            <button
+              key="logout"
+              onClick={() => logout()}
+              className={styles.logOut}
+            >
+              Log Out
+            </button>
           ) : (
-            <button onClick={() => toggleModal()}>Login</button>
+            <button key="login" onClick={() => toggleModal()}>
+              Login
+            </button>
           )}
         </div>
       </nav>
