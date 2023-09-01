@@ -6,6 +6,6 @@ export default function LoginProvider({ children }: { children: ReactNode }) {
   const refresh = useRefresh();
   useEffect(() => {
     refresh();
-  }, [refresh]);
+  }, []);
   return <>{children}</>;
 }
