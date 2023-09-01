@@ -1,0 +1,30 @@
+.addTaskForm > div {
+  display: flex;
+  color: rgb(192, 192, 192);
+  /* color: black; */
+  font-weight: 500;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.addTaskForm > div > input {
+  background-color: rgba(0, 15, 69, 0.474);
+  color: white;
+}
+
+.addTaskForm > div > textarea {
+  outline: none;
+  height: 100px;
+  resize: none;
+  opacity: 0.5;
+  background-color: rgba(0, 15, 69, 0.474);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 10px 20px;
+}
+
+.addTaskForm {
+  gap: 10px;
+}

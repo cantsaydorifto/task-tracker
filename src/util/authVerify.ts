@@ -47,7 +47,7 @@ export default async function authVerify() {
   let decodedUsername: string | null = null;
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) throw { status: 403, message: "Invalid Token" };
+    if (err) throw { status: 403, message: "Invalid/Expired Token" };
     if (decoded && typeof decoded != "string" && decoded.username) {
       decodedUsername = decoded.username;
     }

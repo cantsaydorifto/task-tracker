@@ -1,3 +1,86 @@
 .main {
-  /* display: flex; */
+  padding-top: 70px;
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  max-width: 1200px;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+.main h1 {
+  text-align: center;
+}
+
+.task {
+  position: relative;
+  width: 840px;
+  border-radius: 12px;
+  min-height: 100px;
+  padding: 10px 20px;
+  background-color: rgba(52, 52, 52, 0.408);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task > span:nth-child(1) {
+  padding-right: 20px;
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.task > p {
+  color: rgb(207, 207, 207);
+  font-weight: 300;
+}
+
+.task > span:nth-child(3) {
+  color: rgb(122, 122, 122);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.remove {
+  all: unset;
+  cursor: pointer;
+  padding: 5px;
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 6px;
+  opacity: 0.8;
+  top: 10px;
+  right: 5px;
+  transition: all 0.3s;
+}
+
+.remove > img {
+  height: 20px;
+  width: 20px;
+}
+
+.remove:hover {
+  background-color: rgb(255, 126, 126);
+  opacity: 1;
+}
+
+.remove:hover img {
+  animation: trashCan 0.3s ease-in-out;
+}
+
+@keyframes trashCan {
+  0% {
+    transform: rotate(20deg);
+  }
+
+  50% {
+    transform: rotate(-20deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
 }

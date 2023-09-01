@@ -14,7 +14,6 @@ export default function useRefresh() {
         email: string;
         token: string;
       }>("/api/refresh", { withCredentials: true });
-
       setAuth({ isAuthenticated: true, user: res.data });
       return res.data.token;
     } catch (err: any) {
