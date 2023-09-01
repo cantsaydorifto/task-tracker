@@ -50,7 +50,7 @@ export default function SignupForm({
       console.log(res);
     } catch (err: any) {
       setLoading(false);
-      console.log(err);
+      // console.log(err);
       setError(err.response.data.message);
     }
   }
