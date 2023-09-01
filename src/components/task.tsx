@@ -5,6 +5,7 @@ import type { Task } from "@prisma/client";
 import useAxiosPrivate from "@/hooks/useAxiosPrivate";
 import { useEffect, useState } from "react";
 import styles from "../app/page.module.css";
+import { motion } from "framer-motion";
 
 function getRelativeTime(timeStamp: Date) {
   const now = new Date();
@@ -63,7 +64,11 @@ export default function Tasks({ token }: { token: string }) {
 
   return (
     <>
-      <button className="addTaskBtn" onClick={() => setShowModal(true)}>
+      <button
+        style={{ marginTop: "30px" }}
+        className="addTaskBtn"
+        onClick={() => setShowModal(true)}
+      >
         Add
       </button>
       {showModal && (
@@ -74,31 +79,33 @@ export default function Tasks({ token }: { token: string }) {
           toggleModal={toggleModal}
         />
       )}
-      {tasks.map((el) => (
-        <div className={styles.task} key={el.id}>
-          <span>{el.title}</span>
-          <p>{el.content}</p>
-          <span>{getRelativeTime(new Date(el.createdAt))}</span>
-          <button
-            onClick={async () => {
-              try {
-                setTasks((prev) => prev.filter((tsk) => tsk.id !== el.id));
-                await axiosPrivate.delete(`/api/task/remove/${el.id}`, {
-                  headers: { Authorization: `Bearer: ${token}` },
-                });
-              } catch (err) {
-                // console.log(err);
-              }
-            }}
-            className={styles.remove}
-          >
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/484/484662.png"
-              alt="delete"
-            />
-          </button>
-        </div>
-      ))}
+      <motion.div layout className={styles.taskContainer}>
+        {tasks.map((el) => (
+          <motion.div layout className={styles.task} key={el.id}>
+            <span>{el.title}</span>
+            <p>{el.content}</p>
+            <span>{getRelativeTime(new Date(el.createdAt))}</span>
+            <button
+              onClick={async () => {
+                try {
+                  setTasks((prev) => prev.filter((tsk) => tsk.id !== el.id));
+                  await axiosPrivate.delete(`/api/task/remove/${el.id}`, {
+                    headers: { Authorization: `Bearer: ${token}` },
+                  });
+                } catch (err) {
+                  // console.log(err);
+                }
+              }}
+              className={styles.remove}
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/484/484662.png"
+                alt="delete"
+              />
+            </button>
+          </motion.div>
+        ))}
+      </motion.div>
     </>
   );
 }
