@@ -74,7 +74,7 @@ export async function POST(request: Request) {
         email: user.email,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "10s" }
+      { expiresIn: "900s" }
     );
 
     cookies().set("jwt", refreshToken, {
