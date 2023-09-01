@@ -46,15 +46,18 @@ export default function Tasks({ token }: { token: string }) {
     setShowModal((prev) => !prev);
   };
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
     async function getTasks() {
       try {
+        setLoading(true);
         const res = await axiosPrivate.get("/api/task", {
           headers: { Authorization: `Bearer: ${token}` },
         });
         setTasks(res.data.tasks);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -79,33 +82,48 @@ export default function Tasks({ token }: { token: string }) {
           toggleModal={toggleModal}
         />
       )}
-      <motion.div layout className={styles.taskContainer}>
-        {tasks.map((el) => (
-          <motion.div layout className={styles.task} key={el.id}>
-            <span>{el.title}</span>
-            <p>{el.content}</p>
-            <span>{getRelativeTime(new Date(el.createdAt))}</span>
-            <button
-              onClick={async () => {
-                try {
-                  setTasks((prev) => prev.filter((tsk) => tsk.id !== el.id));
-                  await axiosPrivate.delete(`/api/task/remove/${el.id}`, {
-                    headers: { Authorization: `Bearer: ${token}` },
-                  });
-                } catch (err) {
-                  // console.log(err);
-                }
-              }}
-              className={styles.remove}
-            >
+      {loading ? (
+        <div className={styles.taskContainer}>
+          <div className={styles.task}>
+            <span>Loading...</span>
+            <p>Loading...</p>
+            <button onClick={() => null} className={styles.remove}>
               <img
                 src="https://cdn-icons-png.flaticon.com/512/484/484662.png"
                 alt="delete"
               />
             </button>
-          </motion.div>
-        ))}
-      </motion.div>
+          </div>
+        </div>
+      ) : (
+        <motion.div layout className={styles.taskContainer}>
+          {tasks.map((el) => (
+            <motion.div layout className={styles.task} key={el.id}>
+              <span>{el.title}</span>
+              <p>{el.content}</p>
+              <span>{getRelativeTime(new Date(el.createdAt))}</span>
+              <button
+                onClick={async () => {
+                  try {
+                    setTasks((prev) => prev.filter((tsk) => tsk.id !== el.id));
+                    await axiosPrivate.delete(`/api/task/remove/${el.id}`, {
+                      headers: { Authorization: `Bearer: ${token}` },
+                    });
+                  } catch (err) {
+                    // console.log(err);
+                  }
+                }}
+                className={styles.remove}
+              >
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/484/484662.png"
+                  alt="delete"
+                />
+              </button>
+            </motion.div>
+          ))}
+        </motion.div>
+      )}
     </>
   );
 }
