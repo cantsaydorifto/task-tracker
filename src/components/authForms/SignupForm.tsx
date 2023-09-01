@@ -56,7 +56,7 @@ export default function SignupForm({
   }
 
   return (
-    <form>
+    <form style={{ marginTop: "40px" }}>
       <div>
         <label htmlFor="username">Username</label>
         <input
@@ -96,8 +96,17 @@ export default function SignupForm({
           id="password"
         />
       </div>
-      {loading && <div>loading....</div>}
-      {error && <div>{error}</div>}
+      {!loading && !error && <p className="loading"></p>}
+      {loading && (
+        <p key={"loading"} className="loading">
+          Loading...
+        </p>
+      )}
+      {error && (
+        <p key={error} className="loading">
+          {error}
+        </p>
+      )}
       <button
         className="addTaskBtn"
         onClick={async (event) => {

@@ -17,6 +17,7 @@ export default function AddTaskModal({
     title: "",
     content: "",
   });
+  const [loading, setLoading] = useState(false);
   const axiosPrivate = useAxiosPrivate();
   const ctx = useAuth();
   return (
@@ -51,27 +52,24 @@ export default function AddTaskModal({
             placeholder="Describe your Task"
           />
         </div>
+        <p key={loading ? "Loading..." : ""} className="loading">
+          {loading ? "Loading..." : ""}
+        </p>
         <button
           className="addTaskBtn"
           onClick={async (event) => {
             event.preventDefault();
-            toggleModal();
+            setLoading(true);
             try {
-              addTask({
-                ...task,
-                createdAt: new Date(Date.now()),
-                authorId: Math.random(),
-                id: Math.random(),
-                updatedAt: null,
-              });
-              await axiosPrivate.post<{ createdPost: Task }>(
+              const res = await axiosPrivate.post<{ createdPost: Task }>(
                 "/api/task/create",
                 task,
                 {
                   headers: { Authorization: `Bearer: ${ctx.auth.user?.token}` },
                 }
               );
-              // addTask(res.data.createdPost);
+              addTask(res.data.createdPost);
+              toggleModal();
             } catch (err) {}
           }}
         >

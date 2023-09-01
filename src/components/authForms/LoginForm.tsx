@@ -54,10 +54,13 @@ export default function LoginForm({
   }
 
   return (
-    <form>
+    <form style={{ marginTop: "40px" }}>
       <div>
-        <label htmlFor="username">Username</label>
+        <label style={{ fontSize: "1.2rem" }} htmlFor="username">
+          Username
+        </label>
         <input
+          style={{ marginTop: "15px" }}
           value={userInfo.username}
           onChange={(e) =>
             setUserInfo((prev) => {
@@ -69,8 +72,11 @@ export default function LoginForm({
         />
       </div>
       <div>
-        <label htmlFor="password">Password</label>
+        <label style={{ fontSize: "1.2rem" }} htmlFor="password">
+          Password
+        </label>
         <input
+          style={{ marginTop: "15px" }}
           value={userInfo.password}
           onChange={(e) =>
             setUserInfo((prev) => {
@@ -81,8 +87,17 @@ export default function LoginForm({
           id="password"
         />
       </div>
-      {loading && <div>loading....</div>}
-      {error && <div>{error}</div>}
+      {!loading && !error && <p className="loading"></p>}
+      {loading && (
+        <p key={"loading"} className="loading">
+          Loading...
+        </p>
+      )}
+      {error && (
+        <p key={error} className="loading">
+          {error}
+        </p>
+      )}
       <button
         className="addTaskBtn"
         onClick={async (event) => {

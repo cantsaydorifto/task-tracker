@@ -50,18 +50,9 @@ export default function Navbar() {
       </nav>
       {showModal && (
         <Modal id={loginForm ? 1 : 0} toggleModal={toggleModal}>
-          <h1>{!loginForm ? "Sign Up" : "Log In"}</h1>
-          <p>
-            By continuing, you are setting up an account and agree to our{" "}
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              User Agreement
-            </a>{" "}
-            and{" "}
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              Privacy Policy
-            </a>
-            .
-          </p>
+          <h1 style={{ fontSize: "1.5rem" }}>
+            {!loginForm ? "Sign Up" : "Log In"}
+          </h1>
           {loginForm ? (
             <LoginForm toggleModal={toggleModal} />
           ) : (
